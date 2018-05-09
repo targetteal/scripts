@@ -1,4 +1,5 @@
 <?php
+define('SECURITY_HASH', '5146d29848ce897b97f8a6fbf17b5ff9');
 
 if (!isset($_POST['mauticform']) ||
 	!isset($_POST['mauticform']['formId']) ||
@@ -20,17 +21,23 @@ $formUrl = "https://mautic.targetteal.com/form/submit?formId=$formId";
 
 if ($honeyEmail != '') {
 	// Bot caught in the honeypot filter
-    die('Caught!');
+  die('Caught!');
 }
-?>
 
-<form id="honeyform" action="<?php echo $formUrl; ?>" method="post">
+$fields['email'] = $realEmail;
+$fields['hash'] = SECURITY_HASH;
+
+unset($fields['amail']);
+
+?>
+<p>Filtering Spam content... </p>
+<form id="form" action="<?php echo $formUrl; ?>" method="post">
 <?php
-    foreach ($fields as $name => $value) {
-        echo '<input type="hidden" name="mauticform[' . htmlentities($name) . ']" value="'.htmlentities($value).'"/>';
-    }
+  foreach ($fields as $name => $value) {
+		echo '<input type="hidden" name="mauticform[' . htmlentities($name) . ']" value="'.htmlentities($value).'"/>';
+  }
 ?>
 </form>
 <script type="text/javascript">
-    document.getElementById('honeyform').submit();
+  document.getElementById('form').submit();
 </script>
