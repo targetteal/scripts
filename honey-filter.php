@@ -24,6 +24,17 @@ if ($honeyEmail != '') {
   die('Caught!');
 }
 
+$blockedEmailPatterns = array(
+	/\A(\d*)\@(.*)\z/
+);
+
+foreach ($blockedEmailPatterns as $pattern) {
+	if (preg_match($pattern, $realEmail)) {
+		// Bot caught in the blocked patterns
+		die('Caught');
+	}
+}
+
 $fields['email'] = $realEmail;
 $fields['hash'] = SECURITY_HASH;
 
