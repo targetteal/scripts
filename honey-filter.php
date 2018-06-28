@@ -25,7 +25,8 @@ if ($honeyEmail != '') {
 }
 
 $blockedEmailPatterns = array(
-	'/\A(\d*)\@(.*)\z/'
+	'/\A(\d*)\@(.*)\z/',
+	'/\A(.*)\@(\d*)\.(.*)\z/'
 );
 
 foreach ($blockedEmailPatterns as $pattern) {
