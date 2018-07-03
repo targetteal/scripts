@@ -1,5 +1,5 @@
 <?php
-define('SECURITY_HASH', '5146d29848ce897b97f8a6fbf17b5ff9');
+define('SECURITY_HASH', '8f3937426a12d221d56ea15901b5870d');
 
 if (!isset($_POST['mauticform']) ||
 	!isset($_POST['mauticform']['formId']) ||
